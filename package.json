@@ -1,7 +1,7 @@
 {
   "name": "vasilios-nicholas-homepage",
   "version": "1.0.0",
-  "description": "",
+  "description": "Vasilios's Personal Website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +11,9 @@
     "url": "git+https://github.com/vasiliosnicholas/Vasilios-Nicholas-Homepage.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "author": "Vasilios Nicholas",
+  "license": "MIT",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/vasiliosnicholas/Vasilios-Nicholas-Homepage/issues"
   },
@@ -27,5 +27,8 @@
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.6.0",
     "prettier": "^3.8.3"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^10.1.8"
   }
 }
