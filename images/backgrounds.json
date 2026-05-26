@@ -1,0 +1,30 @@
+[
+    {
+        "description":"Mountains and Lake near St. Moritz, Switzerland",
+        "path": "../images/background1.png"
+    }, 
+    {
+        "description":"Near the Peak of the Matterhorn, Zermatt, Switzerland",
+        "path": "../images/background2.jpg"
+    }, 
+    {
+        "description":"Byzantine-Era Castle in Trikala, Greece",
+        "path": "../images/background3.jpg"
+    },
+    {
+        "description":"Windmill in Hydra, Greece",
+        "path": "../images/background4.jpg"
+    },
+    {
+        "description":"Small Boat in the Main Harbor of Hydra, Greece",
+        "path": "../images/background5.jpg"
+    },
+    {
+        "description":"Pacific Ocena, Del Monte Forest, Pebble Beach, Monterey, California",
+        "path": "../images/background6.jpg"
+    },
+     {
+        "description":"Del Monte Forest, Pebble Beach, Monterey, California",
+        "path": "../images/background7.jpg"
+    }
+]
