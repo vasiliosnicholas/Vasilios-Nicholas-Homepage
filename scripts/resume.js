@@ -112,7 +112,7 @@ function wireRevealObserver() {
     {
       root: scrollContainer, // observe within the horizontal scroller, not the page
       threshold: 0.25,
-    },
+    }
   );
 
   document.querySelectorAll(".timeline-card").forEach((card) => {
@@ -166,7 +166,7 @@ function wireWheelToHorizontal() {
         scrollContainer.scrollLeft += e.deltaY;
       }
     },
-    { passive: false },
+    { passive: false }
   );
 }
 
@@ -183,14 +183,14 @@ async function init() {
   } catch (err) {
     console.error("Failed to load resume data:", err);
     renderError(
-      "If you're opening this file directly, try serving it via a local web server (e.g. `python -m http.server`).",
+      "If you're opening this file directly, try serving it via a local web server (e.g. `python -m http.server`)."
     );
     return;
   }
 
   // Sort chronologically then render
   const sorted = [...entries].sort((a, b) =>
-    a.sortDate.localeCompare(b.sortDate),
+    a.sortDate.localeCompare(b.sortDate)
   );
   sorted.forEach((entry) => track.appendChild(createCard(entry)));
 
