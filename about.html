@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en-US" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vasilios Nicholas's Homepage</title>
+    <meta name="author" content="Vasilios Nicholas" />
+    <meta name="description" content="Personal Page for Vasilios Nicholas" />
+    <link rel="icon" type="image/x-icon" href="images/VN_icon.png" />
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <!--Bootstrap stylesheet-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!--My stylesheet adapted from the Bootstrap Cover example-->
+    <link href="./styles/style.css" rel="stylesheet" />
+  </head>
+  <body class="h-100 text-center justify-content-center text-bg-dark">
+    <div
+      class="container-fluid d-flex w-100 h-100 p-3 mx-auto align-content-center flex-column"
+    >
+      <header
+        class="w-100 p-3 mb-auto rounded-4 bg-body-extra-clean bg-opacity-30 border-3 blur page-section"
+      >
+        <!--navbar-->
+        <div class="w-100">
+          <h3 class="float-md-start mb-0 fw-semibold">
+            Vasilios Nicholas's Home Page
+          </h3>
+          <nav class="nav nav-masthead justify-content-between float-md-end">
+            <a
+              class="nav-link fw-bold py-1 px-0 rounded-2 bg-body-extra-clean bg-opacity-30 border-3 flash-seq"
+              aria-current="page"
+              href="./index.html#"
+              >Home</a
+            >
+            <a
+              class="nav-link fw-bold py-1 px-0 active rounded-2 bg-body-extra-clean bg-opacity-30 border-3"
+              href="./about.html"
+              >About</a
+            >
+            <a
+              class="nav-link fw-bold py-1 px-0 rounded-2 bg-body-extra-clean bg-opacity-30 border-3 flash-seq"
+              href="./resume.html"
+              >Resume</a
+            >
+          </nav>
+        </div>
+      </header>
+      <main class="col-sm-7 col-md-8 col-xl-6 p-4 mb-auto mx-auto page-section">
+        <section
+          class="row align-content-center mb-auto rounded-4 bg-body-extra-clean bg-opacity-25 border-4 blur"
+        >
+          <h1 class="col align-content-center fw-bold">About Vasilios</h1>
+          <img
+            class="rounded-circle col w-25 h-25"
+            id="profile-picture"
+            src="./images/profile_photo.png"
+            alt="Picture of Vasilios in a Cafe"
+          />
+        </section>
+
+        <!--
+  Place this snippet inside <main> in about.html.
+
+  Requires accordion.css to be loaded in <head>:
+    <link href="./styles/accordion.css" rel="stylesheet" />
+
+  Bootstrap 5.3's JS bundle (already loaded on your other pages)
+  handles the collapse/expand interaction — no extra script needed.
+-->
+
+        <section
+          class="mt-5 p-3 rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
+        >
+          <div class="accordion themed-accordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseOne"
+                  aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne"
+                >
+                  Introduction
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseOne"
+                class="accordion-collapse collapse show"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Hi! I'm Vasilios, a Greek-American born and raised in New
+                    Jersey. I grew up helping my mother take care of my
+                    grandmother, <i> Theodora,</i> who had become paralyzed
+                    after a stroke. Seeing a loved one suffer on a daily basis
+                    drew me towards learning more about the nervous system and
+                    drew me towards a career in healthcare.
+                  </p>
+                  <p>
+                    Set out to pursue this passion, I studied Neuroscience
+                    during my undergrad at Johns Hopkins University. While at
+                    Hopkins, I dabbled with a few computer science courses, and
+                    I was involved in cognitive neuroscience research, where I
+                    programmed an eye-tracker in MATLAB for a human-subjects
+                    behavioral experiment.
+                  </p>
+                  <p>
+                    I graduated in 2020 with aims to apply to medical school
+                    after gaining more experience in the healthcare industry. I
+                    worked and volunteered as an EMT, a medical-scribe, and a
+                    clinical research coordinator before deciding to switch
+                    tracks and pursue a career as a software engineer.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseTwo"
+                >
+                  Pivot to Tech
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseTwo"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  <p>
+                    With the majority of occurring during and after the onset of
+                    the COVID-19 pandemic, I saw different aspects of the
+                    healthcare system stressed to the limits. I've used sluggish
+                    and convoluted electronic health record software as a
+                    medical scribe and EMT. While working for an orthopedics
+                    practice, I discovered a crucial bug in the HL7 messages
+                    generate by the practice's EHR, that was preventing the
+                    practice from communicating with their patients regarding
+                    their post-surgical outcomes. At the same time, I saw plenty
+                    of other industries that had surpassed healthcare in the
+                    tech realm. The overarching question I kept asking myself
+                    throughout my various roles and experiences in healthcare
+                    is:
+                    <emphasis
+                      >How can I improve this software to be more functional to
+                      the end-users?</emphasis
+                    >
+                    I realized that as a software engineer, I could impact
+                    patient's outcomes for the better with a scope that I had
+                    not previously considered.
+                  </p>
+
+                  <p>
+                    Since starting my Master's in Computer Science at
+                    Northeastern in Fall 2026, I have already continued my
+                    impact on healthcare by joining the <strong>S</strong>ignal
+                    Processing and <strong>A</strong>rtifical Intelligence for
+                    <strong>T</strong>ime-Variant <strong>H</strong>ealth Data
+                    (SATH) Lab, as a Khoury Research Apprentice. At the SATH
+                    Lab, I am developing on a software package that filters the
+                    raw pupillometry signal of eye-blinks and other noise,
+                    allowing for analysis of the kinematics of pupil diameter
+                    after exposure to light. I presented my work at the Khoury
+                    Research Symposium this past fall.
+                    <a
+                      class="text-white-50"
+                      href="./images/RA_poster_Final.pdf"
+                    >
+                      Click here to see my poster!
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseThree"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseThree"
+                >
+                  Hobbies and Trivia
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseThree"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  <p>
+                    I am an avid photographer. Anytime I see something
+                    interesting (usually when I'm traveling), I snap a picture
+                    of it. You can see some of the photos I've taken as cycling
+                    through as the page background.
+                  </p>
+                  <p>
+                    <strong>Hint:</strong> Click the "Hide Page Contents" on the
+                    footer at the bottom to view my photos in full-screen.
+                    <a class="text-white-50" href="#display-toggle"
+                      >Click here to navigate down to the display toggle
+                      button.</a
+                    >
+                  </p>
+                  <p>
+                    <strong> Fun-fact: </strong> one of the towns I grew up in,
+                    Holmdel, was home to a large Bell Labs R&D,
+                    <a
+                      class="text-white-50"
+                      href="https://www.holmdelhistoricalsociety.org/bell-labs"
+                    >
+                      The Bell Labs Holmdel Complex</a
+                    >, since the early 1960's. If you're not families with Bell
+                    Labs, it's the company where <i> C </i> and
+                    <i> UNIX </i> where invented by Dennis Ritchie and Ken
+                    Thompson. It has since been renovated and reopened as a
+                    business hub and community space. Here's a picture I took of
+                    the lobby and the exterior:
+                  </p>
+                  <img
+                    class="img-fluid rounded border border-light border-2 mt-2"
+                    src="./images/bell_labs_lobby.jpg"
+                    alt="Lobby and Atrium of the Bell Labs Holmdel Complex"
+                  />
+                  <img
+                    class="img-fluid rounded border border-light border-2 mt-2"
+                    src="./images/bell_labs_exterior.jpg"
+                    alt="Exterior shot of the Bell Labs Holmdel Complex with a large tree on the left"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer
+        class="mt-auto text-white rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
+      >
+        <div class="d-flex align-items-center justify-content-evenly gap-10">
+          <p class="mb-0 img-description">Image Description</p>
+          <button
+            id="display-toggle"
+            class="lead mb-0 btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
+          >
+            Hide Page Contents
+          </button>
+        </div>
+        <div class="mb-0 fs-6">
+          <p class="mb-5">
+            Created by Vasilios Nicholas using HTML, CSS, JavaScript, and
+            <a href="https://getbootstrap.com/" class="text-white-50"
+              >Bootstrap</a
+            >
+            for
+            <a
+              class="text-white-50"
+              href="https://johnguerra.co/classes/webDevelopment_online_summer_2026/"
+              >CS5610 Web Development</a
+            >
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!--Bootstrap JS script-->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <!--My JS script-->
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>
