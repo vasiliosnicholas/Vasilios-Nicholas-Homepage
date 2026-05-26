@@ -16,9 +16,9 @@ function displayToggle() {
       hidden = element.classList.toggle("d-none");
     });
   if (hidden) {
-    displayButton.innerHTML = "Show Text";
+    displayButton.innerHTML = "View Page Contents";
   } else {
-    displayButton.innerHTML = "Hide Text";
+    displayButton.innerHTML = "View Photo";
   }
 }
 
