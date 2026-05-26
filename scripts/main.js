@@ -10,15 +10,13 @@ async function flashElement(element, color) {
 
 function displayToggle() {
   let hidden = false;
-  document
-    .querySelectorAll("body>div>header, body>div>main") //Just wanted to practice using child combinators but using a class selector is probably better here
-    .forEach((element) => {
-      hidden = element.classList.toggle("d-none");
-    });
+  document.querySelectorAll(".page-section:not(footer)").forEach((element) => {
+    hidden = element.classList.toggle("d-none");
+  });
   if (hidden) {
     displayButton.innerHTML = "View Page Contents";
   } else {
-    displayButton.innerHTML = "View Photo";
+    displayButton.innerHTML = "Hide Page Contents";
   }
 }
 
