@@ -26,35 +26,41 @@
     <!--My stylesheet adapted from the Bootstrap Cover example-->
     <link href="./styles/style.css" rel="stylesheet" />
   </head>
-  <body class="d-flex h-100 text-center text-bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <body class="h-100 text-center justify-content-center text-bg-dark">
+    <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto align-content-center flex-column">
       <header
-        class="mb-auto w-100 rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
+        class="w-100 p-3 mb-auto rounded-4 bg-body-extra-clean bg-opacity-30 border-3 blur"
       >
         <!--navbar-->
-        <div>
-          <h3 class="float-md-start mb-0">Vasilios Nicholas's Homepage</h3>
-          <nav class="nav nav-masthead justify-content-center float-md-end">
+        <div class="w-100">
+          <h3 class="float-md-start mb-0 fw-semibold">Vasilios Nicholas's Home Page</h3>
+          <nav
+            class="nav nav-masthead justify-content-between float-md-end"
+          >
             <a
-              class="nav-link fw-bold py-1 px-0 active"
+              class="nav-link fw-bold py-1 px-0 active rounded-2 bg-body-extra-clean bg-opacity-30 border-3 flash-seq"
               aria-current="page"
               href="./index.html#"
               >Home</a
             >
-            <a class="nav-link fw-bold py-1 px-0" href="./about.html#">About</a>
             <a
-              class="nav-link fw-bold py-1 px-0"
-              href="https://getbootstrap.com/docs/5.3/examples/cover/index.html#"
-              >Experience</a
+              class="nav-link fw-bold py-1 px-0 rounded-2 bg-body-extra-clean bg-opacity-30 border-3 flash-seq"
+              href="./about.html"
+              >About</a
+            >
+            <a
+              class="nav-link fw-bold py-1 px-0 rounded-2 bg-body-extra-clean bg-opacity-30 border-3 flash-seq"
+              href="./resume.html"
+              >Resume</a
             >
           </nav>
         </div>
       </header>
       <main
-        class="p-10 mb-auto rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
+        class="col-sm-7 col-md-8 col-xl-6 p-4 mb-auto mx-auto rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
       >
-        <div class="container row justify-content-center mb-auto">
-          <h1 class="col align-content-center">Vasilios Nicholas</h1>
+        <div class="container row align-content-center mb-auto">
+          <h1 class="col align-content-center fw-bold">Vasilios Nicholas</h1>
           <img
             class="rounded-circle col w-25 h-25"
             id="profile-picture"
@@ -63,21 +69,44 @@
           />
         </div>
         <h2 class="lead p-3">MSCS Align Student at Northeastern University</h2>
+        <p class="text-white">Click on the flashing buttons to interact with and navigate around the site.</p>
         <p class="lead">
           <a
             href="./about.html"
-            class="btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0"
+            class="btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
             >Meet Vasilios</a
           >
         </p>
       </main>
-      <footer class="mt-auto text-white-50">
-        <p>
-          Created by Vasilios Nicholas using
-          <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>
-        </p>
-      </footer>
     </div>
+    <footer
+      class="mb-auto mt-auto text-white rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
+    >
+      <div class="d-flex align-items-center justify-content-evenly gap-10">
+        <p class="mb-0">Image Description</p>
+        <button
+          id="display-toggle"
+          class="mb-0 btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
+        >
+          Hide Text
+        </button>
+      </div>
+      <div class="mb-0 fs-6">
+        <p class="mb-5">
+          Created by Vasilios Nicholas using HTML, CSS, JavaScript, and
+          <a href="https://getbootstrap.com/" class="text-white-50"
+            >Bootstrap</a
+          >
+          for
+          <a
+            class="text-white-50"
+            href="https://johnguerra.co/classes/webDevelopment_online_summer_2026/"
+            >CS5610 Web Development</a
+          >
+        </p>
+      </div>
+    </footer>
+
     <!--Bootstrap JS script-->
     <script
       type="module"
