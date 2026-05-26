@@ -72,7 +72,7 @@
   height: 1em;
 }
 .bd-mode-toggle .dropdown-menu .active .bi {
-  display: block !important;
+  display: block;
 }
 
 /* Custom default button */
