@@ -103,7 +103,7 @@ body::before {
 
 body {
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+  /*box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);*/
   z-index: 1;
 }
 
@@ -145,11 +145,93 @@ h1 {
 h1,
 h2,
 h3,
-nav, .lead {
+nav,
+.lead {
   text-shadow: black 0px 5px 5px;
 }
 
 .blur {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(15px);
+}
+
+.accordion.themed-accordion {
+  /* Container surface — fully transparent because our wrapping section
+     already provides the translucent panel. */
+  --bs-accordion-bg: transparent;
+  --bs-accordion-color: #fff;
+  --bs-accordion-border-color: rgba(255, 255, 255, 0.18);
+  --bs-accordion-border-width: 1px;
+  --bs-accordion-border-radius: 1rem;
+  --bs-accordion-inner-border-radius: calc(1rem - 1px);
+
+  /* Buttons — translucent white, light text */
+  --bs-accordion-btn-color: #fff;
+  --bs-accordion-btn-bg: rgba(255, 255, 255, 0.08);
+  --bs-accordion-btn-padding-y: 1rem;
+  --bs-accordion-btn-padding-x: 1.25rem;
+  --bs-accordion-btn-focus-border-color: rgba(255, 255, 255, 0.6);
+
+  /* Bootstrap multiplies this rgb triple by an alpha for the focus ring.
+     White-ish ring fits the theme; the default Bootstrap blue does not. */
+  --bs-accordion-btn-focus-shadow-rgb: 255, 255, 255;
+
+  /* Active (expanded) state — slightly brighter so it's clearly the
+     current item, but still translucent. */
+  --bs-accordion-active-color: #fff;
+  --bs-accordion-active-bg: rgba(255, 255, 255, 0.16);
+
+  /* Body padding + color */
+  --bs-accordion-body-padding-y: 1.25rem;
+  --bs-accordion-body-padding-x: 1.25rem;
+
+  /* Chevron icons — Bootstrap defaults to dark SVGs that disappear on
+     a dark background. These are the same paths recoloured white.
+     The `active-icon` is the rotated state; Bootstrap rotates it
+     itself, so it's fine to use the same artwork. */
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/* Header text styling — match the rest of the site (bold + drop shadow) */
+.accordion.themed-accordion .accordion-button {
+  font-weight: 700;
+  text-shadow: black 0 3px 5px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.25s ease;
+}
+
+.accordion.themed-accordion .accordion-button:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Body text — drop the harsh shadow on long paragraphs (looks fuzzy),
+   but keep the light color */
+.accordion.themed-accordion .accordion-body {
+  color: rgba(255, 255, 255, 0.92);
+  text-align: left;
+}
+
+.accordion.themed-accordion .accordion-body code {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+/* Item dividers — subtle white rule between items instead of the
+   default opaque border that doesn't fit the theme */
+.accordion.themed-accordion .accordion-item {
+  background: transparent;
+  border-left: 0;
+  border-right: 0;
+}
+
+.accordion.themed-accordion .accordion-item:first-of-type {
+  border-top: 0;
+}
+
+.accordion.themed-accordion .accordion-item:last-of-type {
+  border-bottom: 0;
 }
