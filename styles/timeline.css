@@ -1,0 +1,335 @@
+/*
+ * Timeline-specific styles for resume.html
+ * Layered on top of style.css — uses the same dark/blur/translucent theme.
+ */
+
+/* --- Filter bar -------------------------------------------------------- */
+
+.filter-btn {
+  border-width: 2px;
+  text-shadow: black 0 2px 4px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #222;
+  text-shadow: none;
+  border-color: #fff;
+}
+
+/* --- Horizontal scrolling timeline ------------------------------------ */
+
+.timeline-scroll {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2.5rem 1rem 2rem 1rem;
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(255, 255, 255, 0.5) rgba(0, 0, 0, 0.2);
+  scrollbar-width: thin;
+  cursor: grab;
+}
+
+.timeline-scroll:active {
+  cursor: grabbing;
+}
+
+.timeline-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.timeline-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.timeline-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.timeline-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* The horizontal line running through the cards */
+.timeline-track {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  /* `center` lets each card override with align-self; `stretch` (the default
+     when items have auto cross-size) would force every card to the full
+     track height and defeat the above/below alternation. */
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  /* Tall enough that cards above the line and cards below the line don't
+     visually overlap. Each card is ~260px tall, plus dot offset and gap. */
+  height: 600px;
+  /* Without this, the track stays as wide as its parent's content area
+     (.timeline-scroll's viewport), while its flex children overflow to
+     trigger horizontal scroll. The ::before centerline is positioned
+     relative to the track, so it would stop at the visible edge instead
+     of spanning the full timeline. `max-content` makes the track itself
+     as wide as all cards combined. */
+  width: max-content;
+}
+
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 5%,
+    rgba(255, 255, 255, 0.7) 95%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  z-index: 0;
+}
+
+/* --- Timeline cards --------------------------------------------------- */
+
+.timeline-card {
+  position: relative;
+  flex: 0 0 280px;
+  /* Fixed height so cards consistently sit above or below the centerline,
+     instead of growing to fit content (which would make some cards tall
+     enough to cross the line). Content scrolls inside the details panel
+     when expanded. */
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  z-index: 1;
+  /* Initial hidden state for IntersectionObserver reveal.
+     Use opacity only — a translateY would fight the above/below
+     alternation by visually pulling all cards down on first paint. */
+  opacity: 0;
+  transition:
+    opacity 0.5s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    flex-basis 0.35s ease,
+    height 0.35s ease;
+}
+
+.timeline-card.is-visible {
+  opacity: 1;
+}
+
+.timeline-card:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-card.is-expanded {
+  flex-basis: 360px;
+  height: 360px;
+  background-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Hidden by filter */
+.timeline-card.is-filtered-out {
+  display: none;
+}
+
+/* The dot/node where the card meets the line */
+.timeline-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -1.5rem;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  z-index: 2;
+}
+
+/* Alternate cards above/below the center line.
+   With a fixed track height + align-items: center on the parent, align-self
+   on each card overrides the centering. flex-start = above line, flex-end =
+   below line. (margin: auto would compete with align-self, so we don't use it.) */
+.timeline-card:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.timeline-card:nth-child(odd)::after {
+  top: auto;
+  bottom: -1.75rem;
+}
+
+.timeline-card:nth-child(even) {
+  align-self: flex-end;
+}
+
+.timeline-card:nth-child(even)::after {
+  top: -1.75rem;
+  bottom: auto;
+}
+
+/* --- Card content ----------------------------------------------------- */
+
+.card-date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.25rem;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  text-shadow: black 0 3px 5px;
+}
+
+.card-org {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.25rem;
+}
+
+.card-location {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.card-category {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Per-category accent on the node dot */
+.timeline-card[data-category="education"]::after {
+  background-color: #ffd166;
+}
+.timeline-card[data-category="work"]::after {
+  background-color: #06d6a0;
+}
+.timeline-card[data-category="research"]::after {
+  background-color: #4cc9f0;
+}
+.timeline-card[data-category="volunteering"]::after {
+  background-color: #ef476f;
+}
+.timeline-card[data-category="activities"]::after {
+  background-color: #c77dff;
+}
+
+/* --- Expand/collapse details ----------------------------------------- */
+
+.card-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+}
+
+.timeline-card.is-expanded .card-details {
+  max-height: 220px;
+  overflow-y: auto;
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+.card-details ul {
+  padding-left: 1.1rem;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.card-details li {
+  margin-bottom: 0.35rem;
+}
+
+.card-toggle-hint {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-style: italic;
+}
+
+/* --- Skills section --------------------------------------------------- */
+
+.skill-card {
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-align: left;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.skill-card h5 {
+  text-shadow: black 0 3px 5px;
+}
+
+/* --- Responsive tweaks ----------------------------------------------- */
+
+@media (max-width: 576px) {
+  .timeline-card {
+    flex: 0 0 230px;
+    height: 220px;
+  }
+  .timeline-card.is-expanded {
+    flex-basis: 260px;
+    height: 320px;
+  }
+  .timeline-track {
+    height: 540px;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-card {
+    opacity: 1;
+    transition: background-color 0.2s ease, flex-basis 0.2s ease, height 0.2s ease;
+  }
+  .timeline-scroll {
+    scroll-behavior: auto;
+  }
+}

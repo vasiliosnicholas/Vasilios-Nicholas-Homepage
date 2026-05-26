@@ -1,0 +1,192 @@
+[
+  {
+    "category": "education",
+    "title": "B.S. in Neuroscience",
+    "org": "Johns Hopkins University",
+    "location": "Baltimore, MD",
+    "dateLabel": "08/2016 – 05/2020",
+    "sortDate": "2016-08",
+    "details": ["Graduated with General Honors."]
+  },
+  {
+    "category": "research",
+    "title": "Research Assistant",
+    "org": "Johns Hopkins University, Courtney Lab",
+    "location": "Baltimore, MD",
+    "dateLabel": "05/2017 – 12/2018",
+    "sortDate": "2017-05",
+    "details": [
+      "Helped design and program a MATLAB Psychtoolbox experiment evaluating a behavioral paradigm in healthy, human subjects.",
+      "Consented and ran participants through MATLAB attention studies.",
+      "Analyzed study data using statistical models in MATLAB and Excel."
+    ]
+  },
+  {
+    "category": "activities",
+    "title": "Nu Rho Psi (Neuroscience Honors Society)",
+    "org": "JHU Undergraduate Society for Neuroscience",
+    "location": "Baltimore, MD",
+    "dateLabel": "09/2017 – 05/2020",
+    "sortDate": "2017-09",
+    "details": ["Involved in multiple community service events."]
+  },
+  {
+    "category": "activities",
+    "title": "Mentor – Baltimore Robotics Institute",
+    "org": "Baltimore Robotics Institute",
+    "location": "Baltimore, MD",
+    "dateLabel": "09/2017 – 11/2017",
+    "sortDate": "2017-09",
+    "details": [
+      "Mentored a competitive robotics team at a Baltimore elementary school in the Highlandtown neighborhood.",
+      "Helped the team design, build, and program their robot.",
+      "Accompanied the school to competitions and coached them during matches."
+    ]
+  },
+  {
+    "category": "volunteering",
+    "title": "Patient Representative",
+    "org": "Johns Hopkins Bayview Medical Center ED",
+    "location": "Baltimore, MD",
+    "dateLabel": "02/2018 – 12/2019",
+    "sortDate": "2018-02",
+    "details": [
+      "Patient advocate tending to patients' non-clinical needs.",
+      "Showed visitors to patients' rooms in the Emergency Department."
+    ]
+  },
+  {
+    "category": "activities",
+    "title": "Sunday School Assistant",
+    "org": "Greek Orthodox Cathedral of the Annunciation",
+    "location": "Baltimore, MD",
+    "dateLabel": "02/2018 – 03/2020",
+    "sortDate": "2018-02",
+    "details": [
+      "Helped teachers with daily lessons and activities, primarily with the third-grade class.",
+      "Helped track students to and from church service and the school."
+    ]
+  },
+  {
+    "category": "activities",
+    "title": "President – Orthodox Christian Fellowship",
+    "org": "JHU Orthodox Christian Fellowship",
+    "location": "Baltimore, MD",
+    "dateLabel": "09/2018 – 05/2020",
+    "sortDate": "2018-09",
+    "details": [
+      "Organized faith-based discussions with our priest.",
+      "Coordinated rides for students to church each Sunday during college."
+    ]
+  },
+  {
+    "category": "volunteering",
+    "title": "EMT-B / Crew Chief",
+    "org": "Holmdel First Aid Squad",
+    "location": "Holmdel, NJ",
+    "dateLabel": "01/2019 – 08/2024",
+    "sortDate": "2019-01",
+    "details": [
+      "Volunteer EMT-B responding to 911 calls.",
+      "Crew Chief: stocked ambulances, requested additional resources on calls, and managed the crew during duty hours."
+    ]
+  },
+  {
+    "category": "education",
+    "title": "M.S. in Healthcare Management",
+    "org": "Johns Hopkins University",
+    "location": "Baltimore, MD",
+    "dateLabel": "08/2020 – 08/2021",
+    "sortDate": "2020-08",
+    "details": []
+  },
+  {
+    "category": "work",
+    "title": "Data Analyst",
+    "org": "Seaview Orthopaedics and Medical Associates",
+    "location": "Ocean Township, NJ",
+    "dateLabel": "03/2021 – 10/2021",
+    "sortDate": "2021-03",
+    "details": [
+      "Collected and analyzed patient engagement data.",
+      "Optimized patient engagement workflow.",
+      "Worked with administration and IT to implement new patient engagement software."
+    ]
+  },
+  {
+    "category": "work",
+    "title": "Medical Scribe",
+    "org": "Parker Family Health Center",
+    "location": "Red Bank, NJ",
+    "dateLabel": "02/2022 – 06/2023",
+    "sortDate": "2022-02",
+    "details": [
+      "Scribed for physicians on a biweekly basis across various specialties at an HRSA-designated free clinic."
+    ]
+  },
+  {
+    "category": "work",
+    "title": "Clinical Research Coordinator",
+    "org": "The Institute for Advanced Reconstruction",
+    "location": "Tinton Falls, NJ",
+    "dateLabel": "06/2022 – 06/2024",
+    "sortDate": "2022-06",
+    "details": [
+      "Maintained IRB compliance on active clinical studies.",
+      "Wrote literature reviews and research papers based on prospective and retrospective clinical studies.",
+      "Analyzed and computed statistics on clinical data.",
+      "Wrote insurance appeal letters for patients denied coverage for reconstructive surgery.",
+      "Assisted with credentialing of physicians in fellowship societies.",
+      "Trained a fellow clinical research coordinator."
+    ]
+  },
+  {
+    "category": "education",
+    "title": "M.S. in Computer Science (Align)",
+    "org": "Northeastern University",
+    "location": "Boston, MA",
+    "dateLabel": "08/2025 – 12/2027",
+    "sortDate": "2025-08",
+    "details": ["MSCS Align program at Khoury College of Computer Sciences."]
+  },
+  {
+    "category": "work",
+    "title": "Graduate Teaching Assistant",
+    "org": "Northeastern University, Khoury College",
+    "location": "Boston, MA",
+    "dateLabel": "01/2026 – 04/2026",
+    "sortDate": "2026-01",
+    "details": [
+      "TA for a graduate-level Data Structures, Algorithms & Computer Systems course for CS bridge students.",
+      "Hosted biweekly office hours.",
+      "Led a weekly recitation.",
+      "Graded assignments."
+    ]
+  },
+  {
+    "category": "research",
+    "title": "Graduate Research Assistant",
+    "org": "Northeastern SATH Lab (Signal Processing and Artificial Intelligence for Time-Variant Health Data Lab)",
+    "location": "Boston, MA",
+    "dateLabel": "01/2026 – present",
+    "sortDate": "2026-01",
+    "details": [
+      "Developing an open-source software package for analyzing pupillometry data.",
+      "Filtering blink artifacts so clinical researchers can evaluate pupil diameter as a biomarker of circadian system health."
+    ]
+  },
+  {
+    "category": "research",
+    "title": "Research Assistant – Signal Processing (Intern)",
+    "org": "Massachusetts General Brigham",
+    "location": "Boston, MA",
+    "dateLabel": "06/2026 – 12/2026",
+    "sortDate": "2026-06",
+    "details": [
+      "Writing a software package to parse pupillometry and related data.",
+      "Performing signal-processing analyses to filter artifacts from data.",
+      "Analyzing and plotting data, preparing output statistics.",
+      "Writing documentation and a user-friendly website for non-study staff."
+    ]
+  }
+]
