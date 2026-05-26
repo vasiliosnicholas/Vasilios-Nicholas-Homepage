@@ -1,6 +1,6 @@
 const backgroundColorOne = "bg-white";
 const flashTime = 2000;
-const backgroundTime = 10000;
+const backgroundTime = 15000;
 const simpleFlashElements = document.querySelectorAll(".flash");
 const sequenceFlashElements = document.querySelectorAll(".flash-seq");
 const displayButton = document.querySelector("#display-toggle");
