@@ -156,18 +156,22 @@ function wireDragScroll() {
   });
 }
 
+function scrollMax() {
+  return scrollContainer.scrollWidth - scrollContainer.clientWidth;
+}
+
 function wireWheelToHorizontal() {
-  scrollContainer.addEventListener(
-    "wheel",
-    (e) => {
-      // Only translate if the user is scrolling primarily vertically
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        scrollContainer.scrollLeft += e.deltaY;
-      }
-    },
-    { passive: false }
-  );
+  scrollContainer.addEventListener("wheel", (e) => {
+    // Only translate if the user is scrolling primarily vertically
+    if (
+      Math.abs(e.deltaY) > Math.abs(e.deltaX) &&
+      ((e.deltaY < 0 && Math.floor(scrollContainer.scrollLeft) > 0) ||
+        (e.deltaY > 0 && Math.ceil(scrollContainer.scrollLeft) < scrollMax()))
+    ) {
+      e.preventDefault();
+      scrollContainer.scrollLeft += e.deltaY * 100;
+    }
+  });
 }
 
 // --- Boot -------------------------------------------------------------
