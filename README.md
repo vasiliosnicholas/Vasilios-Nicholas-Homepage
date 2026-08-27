@@ -109,11 +109,6 @@ The site is plain HTML / CSS / JavaScript, so no build step is required.
 - Use **Hide Page Contents** to dismiss the overlay and see the background photograph
 - Image captions at the bottom of each page describe where the photograph was taken
 
-## Design Document
-
-The design document for this project (description, user stories, and wireframes) is available here:
-
-- *(add link to your design document — Google Doc, PDF in the repo, or `docs/` folder)*
 
 ## AI Disclosure
 
