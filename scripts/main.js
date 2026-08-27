@@ -1,4 +1,4 @@
-const backgroundColorOne = "btn-flash-bg";
+const backgroundColorOne = "bg-white";
 const flashTime = 2000;
 const backgroundTime = 15000;
 const animationDuration = backgroundTime / 6;
@@ -42,14 +42,7 @@ async function handleAnimation(
   return animation.finished;
 }
 
-async function flashElement(element, color) {
-  await handleAnimation(
-    fadeKeyFrames,
-    element,
-    "reverse",
-    toggleContentDuration,
-    "::before"
-  );
+function flashElement(element, color) {
   element.classList.toggle(color);
 }
 //TODO: Change to slideKeyFrames onced fixed
@@ -97,7 +90,7 @@ let index = 0;
 let count = 0;
 
 async function flashInterval() {
-  await flashElement(sequenceFlashElements[index], backgroundColorOne);
+  flashElement(sequenceFlashElements[index], backgroundColorOne);
   if (count == 1) {
     index++;
     index = index % sequenceFlashElements.length;
