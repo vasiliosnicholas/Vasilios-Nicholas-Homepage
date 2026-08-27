@@ -26,7 +26,8 @@
     "eslint": "^10.4.0",
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.6.0",
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.3",
+    "reload": "^3.4.3"
   },
   "dependencies": {
     "eslint-config-prettier": "^10.1.8"

@@ -26,12 +26,13 @@
     <!--My stylesheet adapted from the Bootstrap Cover example-->
     <link href="./styles/style.css" rel="stylesheet" />
   </head>
+
   <body class="h-100 text-center justify-content-center text-bg-dark">
     <div
       class="container-fluid d-flex w-100 h-100 p-3 mx-auto align-content-center flex-column"
     >
       <header
-        class="w-100 p-3 mb-auto rounded-4 bg-body-extra-clean bg-opacity-30 border-3 blur page-section"
+        class="w-100 p-3 mb-auto rounded-4 bg-body-extra-clean bg-opacity-30 border-3 blur page-section mt-2"
       >
         <!--navbar-->
         <div class="w-100">
@@ -84,45 +85,77 @@
         </p>
       </main>
       <footer
-        class="mt-auto text-white rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur"
+        class="mt-auto text-white rounded-4 bg-body-extra-clean bg-opacity-25 border-3 blur d-flex flex-row justify-content-between mb-2"
       >
-        <div class="d-flex align-items-center justify-content-evenly gap-10">
-          <p class="mb-0 img-description">Image Description</p>
-          <button
-            id="display-toggle"
-            class="lead mb-0 btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
-          >
-            Hide Page Contents
-          </button>
+        <button
+          type="button"
+          id="background-previous"
+          class="lead mb-0 btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Previous Image"
+        >
+          &laquo
+        </button>
+        <div class="align-items-between h-100">
+          <div class="d-flex align-items-center justify-content-evenly gap-10">
+            <p class="mb-0 img-description">Image Description</p>
+            <button
+              type="button"
+              id="display-toggle"
+              class="lead mb-0 btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
+            >
+              Hide Page Contents
+            </button>
+          </div>
+          <div class="mb-0 fs-6">
+            <p class="mb-5">
+              Created by
+              <a
+                class="text-white-50"
+                href="https://github.com/vasiliosnicholas"
+                >Vasilios Nicholas</a
+              >
+              using HTML, CSS, JavaScript, and
+              <a href="https://getbootstrap.com/" class="text-white-50"
+                >Bootstrap</a
+              >
+              for
+              <a
+                class="text-white-50"
+                href="https://johnguerra.co/classes/webDevelopment_online_summer_2026/"
+                >CS5610 Web Development</a
+              >
+            </p>
+          </div>
         </div>
-        <div class="mb-0 fs-6">
-          <p class="mb-5">
-            Created by
-            <a class="text-white-50" href="https://github.com/vasiliosnicholas"
-              >Vasilios Nicholas</a
-            >
-            using HTML, CSS, JavaScript, and
-            <a href="https://getbootstrap.com/" class="text-white-50"
-              >Bootstrap</a
-            >
-            for
-            <a
-              class="text-white-50"
-              href="https://johnguerra.co/classes/webDevelopment_online_summer_2026/"
-              >CS5610 Web Development</a
-            >
-          </p>
-        </div>
+        <button
+          type="button"
+          id="background-next"
+          class="lead mb-0 btn btn-lg btn-outline-dark fw-bold border-white text-white bg-opacity-25 border-0 flash"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Next Image"
+        >
+          &raquo
+        </button>
       </footer>
     </div>
 
     <!--Bootstrap JS script-->
     <script
-      type="module"
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    </script>
     <!--My JS script-->
     <script type="module" src="./scripts/main.js"></script>
   </body>

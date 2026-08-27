@@ -1,12 +1,22 @@
 const backgroundColorOne = "bg-white";
 const flashTime = 2000;
 const backgroundTime = 15000;
+const animationDuration = backgroundTime / 6;
+const changeOnDemandAnimationDuration = 500;
 const simpleFlashElements = document.querySelectorAll(".flash");
 const sequenceFlashElements = document.querySelectorAll(".flash-seq");
 const displayButton = document.querySelector("#display-toggle");
 const imgDescription = document.querySelector(".img-description");
+const backgroundKey = "currentBackgroundIndex";
+const nextBackgroundButton = document.getElementById("background-next");
+const prevBackgroundButton = document.getElementById("background-previous");
 
-function flashElement(element, color) {
+async function flashElement(element, color) {
+  // await handleFadeAnimation(
+  //   element,
+  //   element.classList.contains(color) ? "reverse" : "normal",
+  //   changeOnDemandAnimationDuration
+  // );
   element.classList.toggle(color);
 }
 
@@ -25,8 +35,8 @@ function displayToggle() {
 let index = 0;
 let count = 0;
 
-function flashInterval() {
-  flashElement(sequenceFlashElements[index], backgroundColorOne);
+async function flashInterval() {
+  await flashElement(sequenceFlashElements[index], backgroundColorOne);
   if (count == 1) {
     index++;
     index = index % sequenceFlashElements.length;
@@ -40,13 +50,34 @@ async function loadBackgrounds() {
   return await data.json();
 }
 
-function changeBackground(image) {
-  imgDescription.innerHTML =
-    `<strong> Image Description:</strong> ` + image.description;
-  document.body.style.setProperty("--bg-image", `url("${image.path}")`);
+function handleFadeAnimation(
+  element,
+  direction,
+  duration,
+  pseudoElement = undefined
+) {
+  if (!element) return Promise.resolve();
+
+  const keyframes =
+    direction === "reverse"
+      ? [{ opacity: 1 }, { opacity: 0 }]
+      : [{ opacity: 0 }, { opacity: 1 }];
+
+  const animation = element.animate(keyframes, {
+    duration: duration,
+    fill: "forwards", // Keeps the final opacity state when done
+    easing: "ease-in-out",
+    pseudoElement: pseudoElement,
+  });
+
+  return animation.finished;
 }
 
-changeBackground((await loadBackgrounds())[0]);
+function changeBackground(image) {
+  document.body.style.setProperty("--bg-image", `url("${image?.path}")`);
+  imgDescription.innerHTML =
+    `<strong> Image Description:</strong> ` + image?.description;
+}
 
 //simple flash
 setInterval(() => {
@@ -61,15 +92,50 @@ if (sequenceFlashElements.length > 0) {
     flashInterval();
   }, flashTime);
 }
-const asyncBackgrounds = await loadBackgrounds();
-let bIndex = 0;
-setInterval(async () => {
-  const backgrounds = await asyncBackgrounds; //using top-level await
+const backgrounds = await loadBackgrounds();
+const currentBackgroundIndex = localStorage.getItem(backgroundKey);
+console.log(backgrounds);
+let bIndex = Number.parseInt(currentBackgroundIndex ?? 0);
+
+let subsequent = false;
+let handler = undefined;
+async function backgroundHandler(duration = animationDuration) {
   if (backgrounds != undefined && backgrounds.length > 0) {
-    await changeBackground(backgrounds[bIndex++]);
-    bIndex = bIndex % backgrounds.length;
+    bIndex = Math.abs(bIndex % backgrounds.length); //why JavaScript?
+    if (subsequent)
+      await handleFadeAnimation(document.body, "reverse", duration, "::before");
+    localStorage.setItem(backgroundKey, bIndex);
+    handleFadeAnimation(document.body, "normal", duration, "::before");
+    changeBackground(backgrounds[bIndex++]);
   }
-}, backgroundTime);
+  subsequent = true;
+  handler = setTimeout(backgroundHandler, backgroundTime);
+}
+
 displayButton.addEventListener("click", displayToggle);
+
+let locked = false;
+
+backgroundHandler();
+
+nextBackgroundButton.addEventListener("click", async () => {
+  if (!locked) {
+    locked = true;
+    if (handler) clearTimeout(handler);
+    await backgroundHandler(changeOnDemandAnimationDuration);
+    locked = false;
+  }
+});
+
+prevBackgroundButton.addEventListener("click", async () => {
+  if (!locked) {
+    locked = true;
+    if (handler) clearTimeout(handler);
+    bIndex -= 2;
+    if (bIndex < 0) bIndex = backgrounds.length - 1;
+    await backgroundHandler(changeOnDemandAnimationDuration);
+    locked = false;
+  }
+});
 
 imgDescription;
