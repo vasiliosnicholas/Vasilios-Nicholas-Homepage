@@ -107,7 +107,7 @@ async function loadBackgrounds() {
 function changeBackground(image) {
   document.body.style.setProperty("--bg-image", `url("${image?.path}")`);
   imgDescription.innerHTML =
-    `<strong> Image Description:</strong> ` + image?.description;
+    `<strong> Image Description:</strong> ${image.description || "No Image Description"}`;
 }
 
 //simple flash
