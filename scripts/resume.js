@@ -169,7 +169,7 @@ function wireWheelToHorizontal() {
         (e.deltaY > 0 && Math.ceil(scrollContainer.scrollLeft) < scrollMax()))
     ) {
       e.preventDefault();
-      scrollContainer.scrollLeft += e.deltaY * 100;
+      scrollContainer.scrollLeft += e.deltaY * 50;
     }
   });
 }
