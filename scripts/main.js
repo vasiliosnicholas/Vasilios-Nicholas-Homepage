@@ -17,17 +17,12 @@ const fadeKeyFrames = ({ reverse }) =>
 
 const translateY = (value) => `translateY(${value}px)`;
 const slideKeyFrames = ({ reverse, element }) => {
-  const rect = element.getBoundingClientRect();
-  if (reverse) element.oldTop = rect.top;
-  console.log(rect.top);
-  reverse
-    ? [
-        { transform: translateY(rect.top) },
-        { transform: translateY(document.documentElement.scrollHeight) },
-      ]
+  const offScreen = window.innerHeight - element.getBoundingClientRect().top;
+  return reverse
+    ? [{ transform: translateY(0) }, { transform: translateY(offScreen) }]
     : [
         { transform: translateY(document.documentElement.scrollHeight) },
-        { transform: translateY(element.oldTop || rect.top) },
+        { transform: translateY(0) },
       ];
 };
 
@@ -53,14 +48,14 @@ async function handleAnimation(
 function flashElement(element, color) {
   element.classList.toggle(color);
 }
-//TODO: Change to slideKeyFrames onced fixed
+
 async function handleToggle(element, reverse) {
   if (!reverse) element.classList.toggle("d-none");
   await handleAnimation(
-    fadeKeyFrames,
+    slideKeyFrames,
     element,
-    { reverse: reverse },
-    toggleContentDuration
+    { reverse: reverse, element: element },
+    changeOnDemandAnimationDuration
   );
   if (reverse) element.classList.toggle("d-none");
 }
@@ -77,7 +72,7 @@ async function displayToggle() {
       fadeKeyFrames,
       displayButton,
       { reverse: true },
-      toggleContentDuration / 2
+      toggleContentDuration / 3
     );
     displayButton.innerHTML = hidden
       ? "View Page Contents"
@@ -86,7 +81,7 @@ async function displayToggle() {
       fadeKeyFrames,
       displayButton,
       { reverse: false },
-      toggleContentDuration / 2
+      toggleContentDuration / 3
     );
     toggleLocked = false;
   }
