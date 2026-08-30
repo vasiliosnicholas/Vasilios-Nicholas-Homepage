@@ -3,7 +3,7 @@ const flashTime = 2000;
 const backgroundTime = 15000;
 const animationDuration = backgroundTime / 6;
 const changeOnDemandAnimationDuration = 500;
-const toggleContentDuration = 250;
+const toggleContentDuration = 1000;
 const simpleFlashElements = document.querySelectorAll(".flash");
 const sequenceFlashElements = document.querySelectorAll(".flash-seq");
 const displayButton = document.querySelector("#display-toggle");
@@ -12,27 +12,35 @@ const imgDescription = document.querySelector(".img-description");
 const backgroundKey = "currentBackgroundIndex";
 const nextBackgroundButton = document.getElementById("background-next");
 const prevBackgroundButton = document.getElementById("background-previous");
-const fadeKeyFrames = (direction) =>
-  direction === "reverse"
-    ? [{ opacity: 1 }, { opacity: 0 }]
-    : [{ opacity: 0 }, { opacity: 1 }];
+const fadeKeyFrames = ({ reverse }) =>
+  reverse ? [{ opacity: 1 }, { opacity: 0 }] : [{ opacity: 0 }, { opacity: 1 }];
 
-const translateY = (percentage) => `translateX(${percentage}%)`;
-const slideKeyFrames = (direction) =>
-  direction === "reverse"
-    ? [{ transform: translateY(100) }, { transform: translateY(0) }]
-    : [{ transform: translateY(0) }, { transform: translateY(100) }];
+const translateY = (value) => `translateY(${value}px)`;
+const slideKeyFrames = ({ reverse, element }) => {
+  const rect = element.getBoundingClientRect();
+  if (reverse) element.oldTop = rect.top;
+  console.log(rect.top);
+  reverse
+    ? [
+        { transform: translateY(rect.top) },
+        { transform: translateY(document.documentElement.scrollHeight) },
+      ]
+    : [
+        { transform: translateY(document.documentElement.scrollHeight) },
+        { transform: translateY(element.oldTop || rect.top) },
+      ];
+};
 
 async function handleAnimation(
   keyframes,
   element,
-  direction,
+  keyframeArgs,
   duration,
   pseudoElement = undefined
 ) {
   if (!element) return Promise.resolve();
 
-  const animation = element.animate(keyframes(direction), {
+  const animation = element.animate(keyframes(keyframeArgs), {
     duration: duration,
     fill: "forwards", // Keeps the final opacity state when done
     easing: "ease-in-out",
@@ -46,15 +54,15 @@ function flashElement(element, color) {
   element.classList.toggle(color);
 }
 //TODO: Change to slideKeyFrames onced fixed
-async function handleToggle(element) {
+async function handleToggle(element, reverse) {
+  if (!reverse) element.classList.toggle("d-none");
   await handleAnimation(
     fadeKeyFrames,
     element,
-    "reverse",
+    { reverse: reverse },
     toggleContentDuration
   );
-  element.classList.toggle("d-none");
-  void handleAnimation(fadeKeyFrames, element, "normal", toggleContentDuration);
+  if (reverse) element.classList.toggle("d-none");
 }
 
 let toggleLocked = false; //throttle
@@ -63,25 +71,23 @@ async function displayToggle() {
     toggleLocked = true;
     const hidden = !elementsToHide[0].classList.contains("d-none");
     elementsToHide.forEach((element) => {
-      void handleToggle(element);
+      handleToggle(element, hidden);
     });
     await handleAnimation(
       fadeKeyFrames,
       displayButton,
-      "reverse",
-      toggleContentDuration
+      { reverse: true },
+      toggleContentDuration / 2
     );
-    void handleAnimation(
+    displayButton.innerHTML = hidden
+      ? "View Page Contents"
+      : "Hide Page Contents";
+    await handleAnimation(
       fadeKeyFrames,
       displayButton,
-      "normal",
-      toggleContentDuration
+      { reverse: false },
+      toggleContentDuration / 2
     );
-    if (hidden) {
-      displayButton.innerHTML = "View Page Contents";
-    } else {
-      displayButton.innerHTML = "Hide Page Contents";
-    }
     toggleLocked = false;
   }
 }
@@ -132,31 +138,34 @@ async function backgroundHandler(duration = animationDuration) {
   if (backgrounds != undefined && backgrounds.length > 0) {
     bIndex = Math.abs(bIndex % backgrounds.length); //why JavaScript?
     if (subsequent) {
-      await Promise.all([
-        void handleAnimation(
-          fadeKeyFrames,
-          document.body,
-          "reverse",
-          duration,
-          "::before"
-        ),
+      (void handleAnimation(
+        fadeKeyFrames,
+        document.body,
+        { reverse: true },
+        duration,
+        "::before"
+      ),
         await handleAnimation(
           fadeKeyFrames,
           imgDescription,
-          "reverse",
+          { reverse: true },
           duration
-        ),
-      ]);
+        ));
     }
     localStorage.setItem(backgroundKey, bIndex);
     void handleAnimation(
       fadeKeyFrames,
       document.body,
-      "normal",
+      { reverse: false },
       duration,
       "::before"
     );
-    void handleAnimation(fadeKeyFrames, imgDescription, "normal", duration);
+    void handleAnimation(
+      fadeKeyFrames,
+      imgDescription,
+      { reverse: false },
+      duration
+    );
     changeBackground(backgrounds[bIndex++]);
   }
   subsequent = true;
@@ -167,7 +176,13 @@ displayButton.addEventListener("click", displayToggle);
 
 let backgroundChangeLocked = false; //throttle
 
-backgroundHandler();
+(backgroundHandler(),
+  handleAnimation(
+    fadeKeyFrames,
+    document.body,
+    { reverse: false },
+    animationDuration / 2
+  ));
 
 nextBackgroundButton.addEventListener("click", async () => {
   if (!backgroundChangeLocked) {
