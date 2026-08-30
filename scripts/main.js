@@ -7,6 +7,7 @@ const toggleContentDuration = 1000;
 const simpleFlashElements = document.querySelectorAll(".flash");
 const sequenceFlashElements = document.querySelectorAll(".flash-seq");
 const displayButton = document.querySelector("#display-toggle");
+const displayButtonContents = document.querySelector("#display-toggle > svg");
 const elementsToHide = document.querySelectorAll(".page-section:not(footer)");
 const imgDescription = document.querySelector(".img-description");
 const backgroundKey = "currentBackgroundIndex";
@@ -25,6 +26,11 @@ const slideKeyFrames = ({ reverse, element }) => {
         { transform: translateY(0) },
       ];
 };
+const rotate = (degrees) => `rotate(${degrees}deg)`;
+const rotateKeyFrames = ({ reverse }) =>
+  reverse
+    ? [{ transform: rotate(0) }, { transform: rotate(180) }]
+    : [{ transform: rotate(180) }, { transform: rotate(0) }];
 
 async function handleAnimation(
   keyframes,
@@ -69,18 +75,9 @@ async function displayToggle() {
       handleToggle(element, hidden);
     });
     await handleAnimation(
-      fadeKeyFrames,
-      displayButton,
-      { reverse: true },
-      toggleContentDuration / 3
-    );
-    displayButton.innerHTML = hidden
-      ? "View Page Contents"
-      : "Hide Page Contents";
-    await handleAnimation(
-      fadeKeyFrames,
-      displayButton,
-      { reverse: false },
+      rotateKeyFrames,
+      displayButtonContents,
+      { reverse: hidden },
       toggleContentDuration / 3
     );
     toggleLocked = false;
