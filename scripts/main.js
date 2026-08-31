@@ -168,13 +168,7 @@ displayButton.addEventListener("click", displayToggle);
 
 let backgroundChangeLocked = false; //throttle
 
-(backgroundHandler(),
-  handleAnimation(
-    fadeKeyFrames,
-    document.body,
-    { reverse: false },
-    animationDuration / 2
-  ));
+backgroundHandler();
 
 nextBackgroundButton.addEventListener("click", async () => {
   if (!backgroundChangeLocked) {
